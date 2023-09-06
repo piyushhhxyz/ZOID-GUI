@@ -1,108 +1,3 @@
-// import React from 'react';
-
-// export default function Display() {
-//   const getImageFiles1 = require.context('../../public/Assets1', false, /\.(jpg|jpeg|png|gif)$/);
-//   const getImageFiles2 = require.context('../../public/Assets2', false, /\.(jpg|jpeg|png|gif)$/);
-//   const getImageFiles3 = require.context('../../public/Assets3', false, /\.(jpg|jpeg|png|gif)$/);
-//   const getImageFiles4 = require.context('../../public/Assets4', false, /\.(jpg|jpeg|png|gif)$/);
-//   const getImageFiles5 = require.context('../../public/Assets5', false, /\.(jpg|jpeg|png|gif)$/);
-
-//   const parseImageName = (imageName) => {
-//     const parts = imageName.split('_');
-//     if (parts.length >= 3) {
-//       return {
-//         folderName: parts[0],
-//         imageName: parts[1],
-//         date: parts[2].split('.')[0],
-//       };
-//     } else {
-//       return {
-//         folderName: 'Unknown',
-//         imageName: 'Unknown',
-//         date: 'Unknown',
-//       };
-//     }
-//   };
-
-//   const renderImageBox = (image, index) => {
-//     const metadata = parseImageName(image.name);
-
-//     return (
-//       <div className="image-container">
-//           <div key={index} className="image-item">
-//             <div className="image-box">
-//               <img src={image.src} alt={image.name} />
-//               <div className="image-metadata">
-//                 <div>TIMESTAMPS : {metadata.date}</div>
-//                 <div>Name:{metadata.imageName}</div>
-//               </div>
-//             </div>
-//           </div>
-//       </div>
-//     );
-//   };
-
-//   const images1 = getImageFiles1.keys().map((fileName) => ({
-//     name: fileName.replace('./', ''),
-//     src: `/Assets1/${fileName}`,
-//   })).reverse(); 
-
-//   const images2 = getImageFiles2.keys().map((fileName) => ({
-//     name: fileName.replace('./', ''),
-//     src: `/Assets2/${fileName}`,
-//   })).reverse();
-
-//   const images3 = getImageFiles3.keys().map((fileName) => ({
-//     name: fileName.replace('./', ''),
-//     src: `/Assets3/${fileName}`,
-//   })).reverse(); 
-
-//   const images4 = getImageFiles4.keys().map((fileName) => ({
-//     name: fileName.replace('./', ''),
-//     src: `/Assets4/${fileName}`,
-//   })).reverse(); 
-
-//   const images5 = getImageFiles5.keys().map((fileName) => ({
-//     name: fileName.replace('./', ''),
-//     src: `/Assets5/${fileName}`,
-//   })).reverse();
-
-//   return (
-//     <div className="container">
-//       <div className="headings">
-//         <div>cam1</div>
-//         <div>cam2</div>
-//         <div>cam3</div>
-//         <div>cam4</div>
-//         <div>cam5</div>
-//       </div>
-//       <div className="columns">
-//         <div className="column">
-//           {images1.map((image, index) => renderImageBox(image, index))}
-//         </div>
-
-//         <div className="column">
-//           {images2.map((image, index) => renderImageBox(image, index))}
-//         </div>
-
-//         <div className="column">
-//           {images3.map((image, index) => renderImageBox(image, index))}
-//         </div>
-
-//         <div className="column">
-//           {images4.map((image, index) => renderImageBox(image, index))}
-//         </div>
-
-//         <div className="column">
-//           {images5.map((image, index) => renderImageBox(image, index))}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-                
-
-
                                             // FUNCTIONALITIESS
 
 
@@ -153,29 +48,63 @@ export default function Display() {
   const images1 = getImageFiles1.keys().map((fileName) => ({
     name: fileName.replace('./', ''),
     src: `/Assets1/${fileName}`,
-  })).reverse(); 
+  }))
 
   const images2 = getImageFiles2.keys().map((fileName) => ({
     name: fileName.replace('./', ''),
     src: `/Assets2/${fileName}`,
-  })).reverse();
+  }))
 
   const images3 = getImageFiles3.keys().map((fileName) => ({
     name: fileName.replace('./', ''),
     src: `/Assets3/${fileName}`,
-  })).reverse(); 
+  }))
 
   const images4 = getImageFiles4.keys().map((fileName) => ({
     name: fileName.replace('./', ''),
     src: `/Assets4/${fileName}`,
-  })).reverse(); 
+  }))
 
   const images5 = getImageFiles5.keys().map((fileName) => ({
     name: fileName.replace('./', ''),
     src: `/Assets5/${fileName}`,
-  })).reverse();
+  }))
 
+  const sortImagesByTimestamp = (images) => {
+    return images.sort((a, b) => b.timestamp - a.timestamp);
+  };
+  
+  const images1WithTimestamp = images1.map((image, index) => ({
+    ...image,
+    timestamp: parseImageName(image.name).date,
+  }));
 
+  const images2WithTimestamp = images2.map((image, index) => ({
+    ...image,
+    timestamp: parseImageName(image.name).date,
+  }));
+
+  const images3WithTimestamp = images3.map((image, index) => ({
+    ...image,
+    timestamp: parseImageName(image.name).date,
+  }));
+
+  const images4WithTimestamp = images4.map((image, index) => ({
+    ...image,
+    timestamp: parseImageName(image.name).date,
+  }));
+
+  const images5WithTimestamp = images5.map((image, index) => ({
+    ...image,
+    timestamp: parseImageName(image.name).date,
+  }));
+
+  const sortedImages1 = sortImagesByTimestamp(images1WithTimestamp);
+  const sortedImages2 = sortImagesByTimestamp(images2WithTimestamp);
+  const sortedImages3 = sortImagesByTimestamp(images3WithTimestamp);
+  const sortedImages4 = sortImagesByTimestamp(images4WithTimestamp);
+  const sortedImages5 = sortImagesByTimestamp(images5WithTimestamp);
+  
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedFolder, setSelectedFolder] = useState(null);
 
@@ -259,23 +188,23 @@ export default function Display() {
       </div>
       <div className="columns">
         <div className="column">
-          {images1.map((image, index) => renderImageBox(image, index))}
+          {sortedImages1.map((image, index) => renderImageBox(image, index))}
         </div>
 
         <div className="column">
-          {images2.map((image, index) => renderImageBox(image, index))}
+          {sortedImages2.map((image, index) => renderImageBox(image, index))}
         </div>
 
         <div className="column">
-          {images3.map((image, index) => renderImageBox(image, index))}
+          {sortedImages3.map((image, index) => renderImageBox(image, index))}
         </div>
 
         <div className="column">
-          {images4.map((image, index) => renderImageBox(image, index))}
+          {sortedImages4.map((image, index) => renderImageBox(image, index))}
         </div>
 
         <div className="column">
-          {images5.map((image, index) => renderImageBox(image, index))}
+          {sortedImages5.map((image, index) => renderImageBox(image, index))}
         </div>
       </div>
       {selectedImage && (
