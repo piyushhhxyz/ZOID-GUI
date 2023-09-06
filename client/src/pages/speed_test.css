@@ -1,0 +1,35 @@
+                                        /* Speed Testingg */
+.image-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: center;
+  gap: 40px;
+  
+}
+
+.image-container > div {
+  flex: 0 0 calc(10%);
+  text-align: center;
+
+}
+
+.image-container img {
+  max-width: 100%;
+  height: auto;
+  max-width: 200px;
+  text-align: center;
+}
+
+
+h1 {
+  text-align: center;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
