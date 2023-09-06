@@ -4,11 +4,11 @@
 import React, { useState } from 'react';
 
 export default function Display() {
-  const getImageFiles1 = require.context('../../public/Assets1', false, /\.(jpg|jpeg|png|gif)$/);
-  const getImageFiles2 = require.context('../../public/Assets2', false, /\.(jpg|jpeg|png|gif)$/);
-  const getImageFiles3 = require.context('../../public/Assets3', false, /\.(jpg|jpeg|png|gif)$/);
-  const getImageFiles4 = require.context('../../public/Assets4', false, /\.(jpg|jpeg|png|gif)$/);
-  const getImageFiles5 = require.context('../../public/Assets5', false, /\.(jpg|jpeg|png|gif)$/);
+  const getImageFiles1 = require.context('../../public/folder1', false, /\.(jpg|jpeg|png|gif)$/);
+  const getImageFiles2 = require.context('../../public/folder2', false, /\.(jpg|jpeg|png|gif)$/);
+  const getImageFiles3 = require.context('../../public/folder3', false, /\.(jpg|jpeg|png|gif)$/);
+  const getImageFiles4 = require.context('../../public/folder4', false, /\.(jpg|jpeg|png|gif)$/);
+  const getImageFiles5 = require.context('../../public/folder5', false, /\.(jpg|jpeg|png|gif)$/);
 
   const parseImageName = (imageName) => {
     const parts = imageName.split('_');
@@ -47,27 +47,27 @@ export default function Display() {
 
   const images1 = getImageFiles1.keys().map((fileName) => ({
     name: fileName.replace('./', ''),
-    src: `/Assets1/${fileName}`,
+    src: `/folder1/${fileName}`,
   }))
 
   const images2 = getImageFiles2.keys().map((fileName) => ({
     name: fileName.replace('./', ''),
-    src: `/Assets2/${fileName}`,
+    src: `/folder2/${fileName}`,
   }))
 
   const images3 = getImageFiles3.keys().map((fileName) => ({
     name: fileName.replace('./', ''),
-    src: `/Assets3/${fileName}`,
+    src: `/folder3/${fileName}`,
   }))
 
   const images4 = getImageFiles4.keys().map((fileName) => ({
     name: fileName.replace('./', ''),
-    src: `/Assets4/${fileName}`,
+    src: `/folder4/${fileName}`,
   }))
 
   const images5 = getImageFiles5.keys().map((fileName) => ({
     name: fileName.replace('./', ''),
-    src: `/Assets5/${fileName}`,
+    src: `/folder5/${fileName}`,
   }))
 
   const sortImagesByTimestamp = (images) => {
